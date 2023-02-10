@@ -74,5 +74,28 @@
         
         </table>
     </form >
+    <?php
+    ini_set('display_errors',0);
+    $giatla = $_POST["giatla"];
+    $ansang = $_POST["ansang"];
+    $tamhoi = $_POST["tamhoi"];
+    $meal = $_POST["meals"];
+    $type = $_POST["typeroom"];
+    $checkin = strtotime( $_POST["checkin"]);
+    $checkout = strtotime($_POST["checkout"]); 
+    $date = abs($checkout- $checkin)  ;
+    $ngaytra = floor($date / (60*60*24)) * $type;
+    $service = $giatla + $ansang + $tamhoi;
+    $tatol = $meal + $service + $type + $ngaytra
+
+?>
+<h2 class="bill">BILL</h2>
+    <form class="input-bill" action="" style="margin-left: 300px;" method="post">
+        TypeRoom: <input type="text" value="<?php echo $type ?>"> <br> <br>
+        Rental hours: <input type="text" value="<?php echo $ngaytra?>"> <br> <br>
+        Money for meals: <input type="text" value="<?php echo $meal ?>"> <br> <br>
+        Money for service: <input type="text" value="<?php echo $service ?>"> <br> <br>
+        Total: <input type="text" value="<?php echo $tatol?>"> <br> <br>
+    </form>
 </body>
 </html>
